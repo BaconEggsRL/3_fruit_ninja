@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://clkpi5ds7j3wi"]
+
+[ext_resource type="Script" path="res://slice.gd" id="1_f1wbw"]
+
+[node name="slice" type="Line2D"]
+script = ExtResource("1_f1wbw")

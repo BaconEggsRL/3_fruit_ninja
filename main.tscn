@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjamgbtbpvvpe"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_mo8pp"]
+[ext_resource type="PackedScene" uid="uid://crq7bhcxp75lf" path="res://fruit.tscn" id="3_mdu07"]
+[ext_resource type="PackedScene" uid="uid://80tkh5vpey8y" path="res://trail.tscn" id="3_qjgsm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsptq"]
+size = Vector2(1152, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1a1tv"]
+size = Vector2(5183.5, 595.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8nb4"]
+size = Vector2(4985.75, 661)
+
+[node name="main" type="Node2D" node_paths=PackedStringArray("start_fruit", "mouse_trail")]
+script = ExtResource("1_mo8pp")
+start_fruit = NodePath("fruits/start_fruit")
+mouse_trail = NodePath("mouse_trail")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ResetButton" type="Button" parent="Control"]
+layout_mode = 1
+offset_right = 126.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 32
+text = "Reset"
+
+[node name="ControlsTip" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Left Click + Drag to slice through the Godot bot!"
+horizontal_alignment = 1
+
+[node name="mouse_trail" parent="." instance=ExtResource("3_qjgsm")]
+MAX_LENGTH = 30
+
+[node name="walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls"]
+
+[node name="ColorRect" type="ColorRect" parent="walls/StaticBody2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 388.0
+offset_right = 1152.0
+offset_bottom = 452.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.12549)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D"]
+position = Vector2(576, 420)
+shape = SubResource("RectangleShape2D_dsptq")
+
+[node name="bounds" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bounds"]
+position = Vector2(599.25, 2215)
+shape = SubResource("RectangleShape2D_1a1tv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="bounds"]
+position = Vector2(-1640, 9)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_p8nb4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="bounds"]
+position = Vector2(2831, 13)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_p8nb4")
+
+[node name="fruits" type="Node2D" parent="."]
+
+[node name="start_fruit" parent="fruits" instance=ExtResource("3_mdu07")]
+position = Vector2(509, -128)
+
+[connection signal="pressed" from="Control/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="body_entered" from="bounds" to="." method="_on_bounds_body_entered"]

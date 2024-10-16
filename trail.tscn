@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://80tkh5vpey8y"]
+
+[ext_resource type="Script" path="res://trail.gd" id="1_xsote"]
+
+[sub_resource type="Curve" id="Curve_0y5p2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_bsowv"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Trail" type="Line2D"]
+top_level = true
+points = PackedVector2Array(0, 0, 291, 0)
+width = 32.0
+width_curve = SubResource("Curve_0y5p2")
+gradient = SubResource("Gradient_bsowv")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("1_xsote")
+MAX_LENGTH = 36
+
+[node name="SwipeTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="timeout" from="SwipeTimer" to="." method="_on_swipe_timer_timeout"]

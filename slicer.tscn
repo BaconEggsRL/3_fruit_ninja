@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fha0alaxmt2i"]
+
+[ext_resource type="Script" path="res://slicer.gd" id="1_nsqkl"]
+
+[node name="slicer" type="Node2D"]
+script = ExtResource("1_nsqkl")

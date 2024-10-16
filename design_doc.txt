@@ -1,0 +1,105 @@
+Fruit Ninja:
+
+Fruit Ninja was a mobile game from Halfbrick Studios.
+It was a huge hit, gaining massive popularity.
+The game is extremely simple, and the original version was created in just a few weeks.
+It was one of the first mobile games to make use of the touchscreen dragging/slicing mechanic.
+
+The goal of the game is to slice fruit that pop up in the air, and avoid bombs.
+The game ends when the player slices a bomb, or misses 3 fruit.
+
+The player can get combos for slicing multiple fruits.
+Other games using this mechanic have a "multi-slice" feature, which allows for you to slice the same fruit multiple times.
+
+
+
+==============================================
+
+Notes from playing:
+https://poki.com/en/g/fruit-ninja
+
+Main menu with start and settings buttons
+	settings menu -- turn audio off (SFX / music)
+	about/credits scrolling
+
+White trail follows cursor dragging/slicing
+Tap or slice to activate buttons
+Don't have to slice all the way through?
+
+any amount of drag is sufficient to slice
+cursor trail for slice
+sfx when slicing
+
+Critical (random), multi-fruit combos (3+ within time? doesn't have to be single swing)
+The chances of performing a critical are random
+Multi-fruit -- at least 3 in a single swipe
+
+Score on top left
+tries on top right
+score/high score displayed
+retry or quit buttons
+
+
+
+==============================================
+
+
+Target Resolutions:
+
+960 x 540
+(16 by 9, or 1.7777 ratio, or 1920 by 1080)
+Godot's default of 1152 by 648 is also 16 by 9 aspect ratio
+Landscape Mode
+
+
+==============================================
+
+
+Goals:
+
+# Create a trail the follow the mouse around when clicking and dragging.
+# This will be use for the slice effect.
+# White trail follows cursor dragging/slicing
+
+# Play slice sound if trail length and speed are high enough
+# Enter at one point, exit at another point, and dragging=true the entire time
+
+
+MENUS
+Create a main menu
+Start button (game)
+Settings menu
+About/Credits menu
+Tap or slice to activate buttons
+
+AUDIO
+Add background music
+Add button to mute SFX and button to mute Music
+Add slider for SFX volume and Music volume
+
+GAMEPLAY
+Score on top left (number of fruit sliced.) Show best under it
+Number of tries (3) on top right
+
+Fruit tossed from bottom of screen
+Fruit that is not sliced and touches killzone makes you lose a try
+3 tries triggers gameover
+
+
+GAMEOVER
+score/high score displayed at game over
+retry or quit buttons
+
+
+
+
+
+==============================================
+
+Stretch goals:
+Bombs insta-kill
+Fruit splatter effect
+Track score (num fruits sliced, time, combos?) on top left
+Critical (random), multi-fruit combos (3+ within time? doesn't have to be single swing)
+The chances of performing a critical are random
+Multi-fruit -- at least 3 in a single swipe

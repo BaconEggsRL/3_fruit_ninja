@@ -1,0 +1,33 @@
+[gd_scene load_steps=9 format=3 uid="uid://52mefugqmusp"]
+
+[ext_resource type="Script" path="res://global/global.gd" id="1_gr3b3"]
+[ext_resource type="AudioStream" uid="uid://p867yl0mpahk" path="res://sounds/boomer.mp3" id="2_x82jk"]
+[ext_resource type="AudioStream" uid="uid://bh165cdqk6x5r" path="res://sounds/slice_low.mp3" id="3_o3wy3"]
+[ext_resource type="AudioStream" uid="uid://m67438j4fbfi" path="res://sounds/slice_high.mp3" id="4_bf7o2"]
+[ext_resource type="AudioStream" uid="uid://c14pk4nrmy58y" path="res://sounds/slice_gory_minor.mp3" id="5_n8k1r"]
+[ext_resource type="AudioStream" uid="uid://bdyu5q5goi3x2" path="res://sounds/slice_gory.mp3" id="6_7ucjw"]
+[ext_resource type="AudioStream" uid="uid://c6hyjub2x4ivk" path="res://sounds/sword_reg_swipe.wav" id="8_aaw3e"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hw138"]
+streams_count = 4
+stream_0/stream = ExtResource("3_o3wy3")
+stream_1/stream = ExtResource("4_bf7o2")
+stream_2/stream = ExtResource("5_n8k1r")
+stream_2/weight = 6.0
+stream_3/stream = ExtResource("6_7ucjw")
+stream_3/weight = 4.0
+
+[node name="global" type="Node"]
+script = ExtResource("1_gr3b3")
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="music" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("2_x82jk")
+
+[node name="slice" type="AudioStreamPlayer" parent="sounds"]
+stream = SubResource("AudioStreamRandomizer_hw138")
+
+[node name="swipe" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("8_aaw3e")
+playback_type = 1
