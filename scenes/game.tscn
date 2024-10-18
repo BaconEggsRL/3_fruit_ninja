@@ -146,7 +146,11 @@ text = "num_bots"
 [node name="IncNumBots" type="Button" parent="Control/VBoxContainer2"]
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_868to")
-text = "▲"
+text = "    "
+
+[node name="Polygon2D" type="Polygon2D" parent="Control/VBoxContainer2/IncNumBots"]
+position = Vector2(-231, 37)
+polygon = PackedVector2Array(244, -25, 238, -14, 250, -14)
 
 [node name="NumBotsLabel" type="Label" parent="Control/VBoxContainer2"]
 layout_mode = 2
@@ -157,7 +161,10 @@ horizontal_alignment = 1
 [node name="DecNumBots" type="Button" parent="Control/VBoxContainer2"]
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mwi6w")
-text = "▼"
+
+[node name="Polygon2D2" type="Polygon2D" parent="Control/VBoxContainer2/DecNumBots"]
+position = Vector2(-231, 26)
+polygon = PackedVector2Array(244, -3, 238, -14, 250, -14)
 
 [node name="mouse_trail" parent="." instance=ExtResource("3_qjgsm")]
 MAX_LENGTH = 30
