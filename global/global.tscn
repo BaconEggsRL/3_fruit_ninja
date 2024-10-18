@@ -24,10 +24,14 @@ script = ExtResource("1_gr3b3")
 
 [node name="music" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("2_x82jk")
+autoplay = true
+bus = &"music"
 
 [node name="slice" type="AudioStreamPlayer" parent="sounds"]
 stream = SubResource("AudioStreamRandomizer_hw138")
+bus = &"sfx"
 
 [node name="swipe" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("8_aaw3e")
+bus = &"sfx"
 playback_type = 1

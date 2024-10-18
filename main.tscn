@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjamgbtbpvvpe"]
+[gd_scene load_steps=8 format=3 uid="uid://cjamgbtbpvvpe"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mo8pp"]
+[ext_resource type="PackedScene" uid="uid://btvqfosghkqr" path="res://volume_slider.tscn" id="2_bfj2i"]
 [ext_resource type="PackedScene" uid="uid://crq7bhcxp75lf" path="res://fruit.tscn" id="3_mdu07"]
 [ext_resource type="PackedScene" uid="uid://80tkh5vpey8y" path="res://trail.tscn" id="3_qjgsm"]
 
@@ -48,6 +49,40 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "Left Click + Drag to slice through the Godot bot!"
 horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 64.0
+offset_right = 128.0
+offset_bottom = 178.0
+
+[node name="Master" type="Label" parent="Control/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Master"
+
+[node name="master_slider" parent="Control/GridContainer" instance=ExtResource("2_bfj2i")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="music" type="Label" parent="Control/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "music"
+
+[node name="music_slider" parent="Control/GridContainer" instance=ExtResource("2_bfj2i")]
+layout_mode = 2
+bus_name = "music"
+
+[node name="sfx" type="Label" parent="Control/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "sfx"
+
+[node name="sfx_slider" parent="Control/GridContainer" instance=ExtResource("2_bfj2i")]
+layout_mode = 2
+bus_name = "sfx"
 
 [node name="mouse_trail" parent="." instance=ExtResource("3_qjgsm")]
 MAX_LENGTH = 30
