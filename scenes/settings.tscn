@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://btvqfosghkqr" path="res://volume_slider.tscn" id="2_tjo8t"]
 [ext_resource type="PackedScene" uid="uid://80tkh5vpey8y" path="res://trail.tscn" id="3_jh1gr"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wph20"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_celau"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lw05y"]
 
@@ -42,10 +42,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -251.5
-offset_top = -110.0
-offset_right = 251.5
-offset_bottom = 195.0
+offset_left = -349.0
+offset_top = -138.0
+offset_right = 349.0
+offset_bottom = 223.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 100
@@ -144,7 +144,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Link to music video"
 mouse_filter = 1
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wph20")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_celau")
 bbcode_enabled = true
 text = "[center]
 Music by [url=https://www.youtube.com/watch?v=NlXrqO1fZ4o]cookedByAI[/url]
@@ -196,17 +196,17 @@ theme_override_constants/separation = 32
 [node name="ResetAudio" type="Button" parent="Control/GridContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 21
-text = "RESET AUDIO DATA"
+text = "Reset Audio Data"
 
 [node name="ResetScore" type="Button" parent="Control/GridContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 21
-text = "RESET SCORE DATA"
+text = "Reset Score Data"
 
-[node name="Donate" type="Button" parent="Control/GridContainer2"]
+[node name="MoreGames" type="Button" parent="Control/GridContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 21
-text = "Donate"
+text = "More Cool Games"
 
 [node name="BackButton" type="Button" parent="Control"]
 layout_mode = 1
@@ -251,7 +251,7 @@ text = "ARE YOU SURE YOU WANT TO RESET SCORE DATA?"
 
 [connection signal="pressed" from="Control/GridContainer2/ResetAudio" to="." method="_on_reset_audio_pressed"]
 [connection signal="pressed" from="Control/GridContainer2/ResetScore" to="." method="_on_reset_score_pressed"]
-[connection signal="pressed" from="Control/GridContainer2/Donate" to="." method="_on_reset_score_pressed"]
+[connection signal="pressed" from="Control/GridContainer2/MoreGames" to="." method="_on_more_games_pressed"]
 [connection signal="pressed" from="Control/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="confirmed" from="AudioPopup" to="." method="_on_audio_popup_confirmed"]
 [connection signal="confirmed" from="ScorePopup" to="." method="_on_score_popup_confirmed"]

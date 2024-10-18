@@ -52,13 +52,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Settings"
 
-[node name="CreditsButton" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Credits"
-
 [node name="Trail" parent="." instance=ExtResource("2_oheeh")]
 
 [connection signal="pressed" from="Control/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

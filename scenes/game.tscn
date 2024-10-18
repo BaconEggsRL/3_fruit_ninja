@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjamgbtbpvvpe"]
+[gd_scene load_steps=10 format=3 uid="uid://cjamgbtbpvvpe"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_mo8pp"]
 [ext_resource type="PackedScene" uid="uid://btvqfosghkqr" path="res://volume_slider.tscn" id="2_bfj2i"]
 [ext_resource type="PackedScene" uid="uid://crq7bhcxp75lf" path="res://fruit.tscn" id="3_mdu07"]
 [ext_resource type="PackedScene" uid="uid://80tkh5vpey8y" path="res://trail.tscn" id="3_qjgsm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_868to"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mwi6w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsptq"]
 size = Vector2(1152, 64)
@@ -14,11 +18,11 @@ size = Vector2(5183.5, 595.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8nb4"]
 size = Vector2(4985.75, 661)
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("score_label", "new_best", "start_fruit", "mouse_trail")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("score_label", "new_best", "num_bots_label", "mouse_trail")]
 script = ExtResource("1_mo8pp")
 score_label = NodePath("Control/ScoreLabel")
 new_best = NodePath("Control/NewBest")
-start_fruit = NodePath("fruits/start_fruit")
+num_bots_label = NodePath("Control/VBoxContainer2/NumBotsLabel")
 mouse_trail = NodePath("mouse_trail")
 
 [node name="Control" type="Control" parent="."]
@@ -87,7 +91,7 @@ offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
-text = "Left Click + Drag to slice through the Godot bot!"
+text = "Left Click + Drag to slice through the Godot bots!"
 horizontal_alignment = 1
 
 [node name="NewBest" type="Label" parent="Control"]
@@ -124,6 +128,37 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="GridContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = 141.0
+grow_vertical = 0
+columns = 2
+
+[node name="NumBotsTip" type="Label" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "num_bots"
+
+[node name="IncNumBots" type="Button" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_868to")
+text = "▲"
+
+[node name="NumBotsLabel" type="Label" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "1"
+horizontal_alignment = 1
+
+[node name="DecNumBots" type="Button" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mwi6w")
+text = "▼"
 
 [node name="mouse_trail" parent="." instance=ExtResource("3_qjgsm")]
 MAX_LENGTH = 30
@@ -172,6 +207,11 @@ shape = SubResource("RectangleShape2D_p8nb4")
 [node name="start_fruit" parent="fruits" instance=ExtResource("3_mdu07")]
 position = Vector2(509, -128)
 
+[node name="start_fruit2" parent="fruits" instance=ExtResource("3_mdu07")]
+position = Vector2(763, -130)
+
 [connection signal="pressed" from="Control/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer2/IncNumBots" to="." method="_on_inc_num_bots_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer2/DecNumBots" to="." method="_on_dec_num_bots_pressed"]
 [connection signal="body_entered" from="bounds" to="." method="_on_bounds_body_entered"]

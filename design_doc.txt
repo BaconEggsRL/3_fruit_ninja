@@ -54,8 +54,7 @@ Landscape Mode
 
 ==============================================
 
-
-Goals:
+Completed Goals:
 
 # Create a trail the follow the mouse around when clicking and dragging.
 # This will be use for the slice effect.
@@ -64,27 +63,35 @@ Goals:
 # Play slice sound if trail length and speed are high enough
 # Enter at one point, exit at another point, and dragging=true the entire time
 
-
-MENUS
 # Create a main menu
 # Start button (game)
 # Settings menu
 # About/Credits menu
-Tap or slice to activate buttons
 
-AUDIO
 # Add background music
 # Add button to mute SFX and button to mute Music
 # Add slider for SFX volume and Music volume
 
-GAMEPLAY
-Score on top left (number of fruit sliced.) Show best under it
-Number of tries (3) on top right
+# Score on top left (number of fruit sliced.) Show best under it
 
+
+==============================================
+
+
+
+Goals:
+
+MENUS
+Tap or slice to activate buttons
+
+AUDIO
+# None
+
+GAMEPLAY
+Number of tries (3) on top right
 Fruit tossed from bottom of screen
 Fruit that is not sliced and touches killzone makes you lose a try
 3 tries triggers gameover
-
 
 GAMEOVER
 score/high score displayed at game over

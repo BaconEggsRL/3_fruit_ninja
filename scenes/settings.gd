@@ -79,3 +79,8 @@ func _on_score_popup_confirmed() -> void:
 	Global.save_data.high_score = 0
 	Global.save_data.save()
 	best_score.text = "%s" % str(Global.save_data.high_score)
+
+
+func _on_more_games_pressed() -> void:
+	var link = "https://baconeggsrl.itch.io/"
+	open_meta_link(link)
