@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmgns8wyvx3wx"]
+
+[ext_resource type="Script" path="res://scenes/scores.gd" id="1_d7q53"]
+
+[node name="scores" type="Node2D" node_paths=PackedStringArray("best_score")]
+script = ExtResource("1_d7q53")
+best_score = NodePath("Control/VBoxContainer/HighScore")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(1156, 648)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -381.0
+offset_right = 381.0
+offset_bottom = 314.0
+grow_horizontal = 2
+theme_override_constants/separation = 50
+
+[node name="Control" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="HighScoreTip" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 96
+text = "Personal Best:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScore" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1156.0
+offset_bottom = 648.0
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="BackButton" type="Button" parent="UI"]
+layout_mode = 1
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 135.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 21
+text = "Back"
+
+[node name="EraseButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.5
+offset_top = -38.0
+offset_right = 86.5
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 21
+text = "ERASE DATA"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "Confirm Erase Data"
+initial_position = 1
+size = Vector2i(381, 100)
+ok_button_text = "YES"
+cancel_button_text = "NO"
+
+[node name="Label" type="Label" parent="ConfirmationDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 373.0
+offset_bottom = 51.0
+text = "ARE YOU SURE YOU WANT TO ERASE ALL DATA?"
+
+[connection signal="pressed" from="UI/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="UI/EraseButton" to="." method="_on_erase_button_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

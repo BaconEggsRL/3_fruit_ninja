@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwr5ealtnmr27"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_pneyj"]
+[ext_resource type="PackedScene" uid="uid://80tkh5vpey8y" path="res://trail.tscn" id="2_oheeh"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_pneyj")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -406.0
+offset_top = 58.0
+offset_right = 413.0
+offset_bottom = 265.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 96
+text = "Godot  Ninja"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.055
+anchor_right = 1.0
+anchor_bottom = 1.06
+offset_left = 480.0
+offset_top = -366.0
+offset_right = -480.0
+offset_bottom = -182.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="StartButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Settings"
+
+[node name="CreditsButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Credits"
+
+[node name="Trail" parent="." instance=ExtResource("2_oheeh")]
+
+[connection signal="pressed" from="Control/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

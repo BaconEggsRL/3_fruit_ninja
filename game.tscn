@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://wvssp3bcd3pn"]
-
-[node name="game" type="Node2D"]
-
-[node name="bg" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="bg"]
-offset_right = 40.0
-offset_bottom = 40.0

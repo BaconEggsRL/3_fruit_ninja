@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjamgbtbpvvpe"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_mo8pp"]
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_mo8pp"]
 [ext_resource type="PackedScene" uid="uid://btvqfosghkqr" path="res://volume_slider.tscn" id="2_bfj2i"]
 [ext_resource type="PackedScene" uid="uid://crq7bhcxp75lf" path="res://fruit.tscn" id="3_mdu07"]
 [ext_resource type="PackedScene" uid="uid://80tkh5vpey8y" path="res://trail.tscn" id="3_qjgsm"]
@@ -14,8 +14,10 @@ size = Vector2(5183.5, 595.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8nb4"]
 size = Vector2(4985.75, 661)
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("start_fruit", "mouse_trail")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("score_label", "new_best", "start_fruit", "mouse_trail")]
 script = ExtResource("1_mo8pp")
+score_label = NodePath("Control/ScoreLabel")
+new_best = NodePath("Control/NewBest")
 start_fruit = NodePath("fruits/start_fruit")
 mouse_trail = NodePath("mouse_trail")
 
@@ -30,12 +32,50 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ResetButton" type="Button" parent="Control"]
-layout_mode = 1
-offset_right = 126.0
-offset_bottom = 53.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="ResetButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Reset"
+
+[node name="GridContainer" type="GridContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="Control/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Master"
+
+[node name="master_slider" parent="Control/VBoxContainer/GridContainer" instance=ExtResource("2_bfj2i")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="music" type="Label" parent="Control/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "music"
+
+[node name="music_slider" parent="Control/VBoxContainer/GridContainer" instance=ExtResource("2_bfj2i")]
+layout_mode = 2
+bus_name = "music"
+
+[node name="sfx" type="Label" parent="Control/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "sfx"
+
+[node name="sfx_slider" parent="Control/VBoxContainer/GridContainer" instance=ExtResource("2_bfj2i")]
+layout_mode = 2
+bus_name = "sfx"
 
 [node name="ControlsTip" type="Label" parent="Control"]
 layout_mode = 1
@@ -50,39 +90,40 @@ theme_override_font_sizes/font_size = 32
 text = "Left Click + Drag to slice through the Godot bot!"
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="Control"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 64.0
-offset_right = 128.0
-offset_bottom = 178.0
+[node name="NewBest" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -365.5
+offset_top = -45.0
+offset_right = 365.5
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.658824, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "NEW BEST!"
+horizontal_alignment = 1
 
-[node name="Master" type="Label" parent="Control/GridContainer"]
-layout_mode = 2
+[node name="ScoreLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -365.5
+offset_top = -45.0
+offset_right = 365.5
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "Master"
-
-[node name="master_slider" parent="Control/GridContainer" instance=ExtResource("2_bfj2i")]
-layout_mode = 2
-bus_name = "Master"
-
-[node name="music" type="Label" parent="Control/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "music"
-
-[node name="music_slider" parent="Control/GridContainer" instance=ExtResource("2_bfj2i")]
-layout_mode = 2
-bus_name = "music"
-
-[node name="sfx" type="Label" parent="Control/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "sfx"
-
-[node name="sfx_slider" parent="Control/GridContainer" instance=ExtResource("2_bfj2i")]
-layout_mode = 2
-bus_name = "sfx"
+text = "0"
+horizontal_alignment = 1
 
 [node name="mouse_trail" parent="." instance=ExtResource("3_qjgsm")]
 MAX_LENGTH = 30
@@ -131,5 +172,6 @@ shape = SubResource("RectangleShape2D_p8nb4")
 [node name="start_fruit" parent="fruits" instance=ExtResource("3_mdu07")]
 position = Vector2(509, -128)
 
-[connection signal="pressed" from="Control/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="body_entered" from="bounds" to="." method="_on_bounds_body_entered"]

@@ -3,17 +3,17 @@ extends Node
 # Loading scenes
 var current_scene = null
 
-#const game_scene_path : String = "res://game.tscn"
-const main_scene_path : String = "res://main.tscn"
-#const scores_scene_path : String = "res://scores.tscn"
-#
-#var game_scene : PackedScene = preload(game_scene_path)
-var main_scene : PackedScene = preload(main_scene_path)
-#var scores_scene : PackedScene = preload(scores_scene_path)
-#
-#const credits_scene_path : String = "res://credits.tscn"
-#var credits_scene : PackedScene = preload(credits_scene_path)
+const game_scene_path : String = "res://scenes/game.tscn"
+const main_scene_path : String = "res://scenes/main.tscn"
+const scores_scene_path : String = "res://scenes/scores.tscn"
+const credits_scene_path : String = "res://scenes/credits.tscn"
+const settings_scene_path : String = "res://scenes/settings.tscn"
 
+var game_scene : PackedScene = preload(game_scene_path)
+var main_scene : PackedScene = preload(main_scene_path)
+var scores_scene : PackedScene = preload(scores_scene_path)
+var credits_scene : PackedScene = preload(credits_scene_path)
+var settings_scene : PackedScene = preload(settings_scene_path)
 
 
 var save_data:SaveData
@@ -46,6 +46,9 @@ func _ready():
 	
 	save_data = SaveData.load_or_create()
 	
+	# set bus volume
+	set_bus_volume()
+	
 	# get OS
 	print("OS name = ", OS.get_name())
 	if OS.has_feature("mobile"):
@@ -53,6 +56,21 @@ func _ready():
 	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
 		mobile = true
 	print("mobile = ", mobile)
+
+
+# Functions
+######################################################################
+
+
+# set volume of each bus from save data
+func set_bus_volume() -> void:
+	for bus_name in save_data.bus_volume:
+		var bus_index = AudioServer.get_bus_index(bus_name)
+		var value = save_data.bus_volume[bus_name]
+		AudioServer.set_bus_volume_db(
+			bus_index,
+			linear_to_db(value)
+		)
 
 
 
@@ -86,19 +104,22 @@ func play_swipe() -> void:
 
 # Scene Manager
 ######################################################################
-#func to_game() -> void:
-	#goto_scene(game_scene)
-	#
+func to_game() -> void:
+	goto_scene(game_scene)
+	
 func to_main() -> void:
 	goto_scene(main_scene)
 
-#func to_scores() -> void:
-	#goto_scene(scores_scene)
-#
-#func to_credits() -> void:
-	#goto_scene(credits_scene)
+func to_scores() -> void:
+	goto_scene(scores_scene)
 
+func to_credits() -> void:
+	goto_scene(credits_scene)
 
+func to_settings() -> void:
+	goto_scene(settings_scene)
+	
+	
 
 func goto_scene(path) -> void:
 	# This function will usually be called from a signal callback,

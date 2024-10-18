@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfwgrdl2x114u"]
+
+[ext_resource type="Script" path="res://scenes/credits.gd" id="1_mmt81"]
+
+[node name="credits" type="Node2D" node_paths=PackedStringArray("music", "code")]
+script = ExtResource("1_mmt81")
+music = NodePath("Control/VBoxContainer/music")
+code = NodePath("Control/VBoxContainer/code")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 1
+
+[node name="BackButton" type="Button" parent="Control"]
+layout_mode = 1
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 135.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 21
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -381.0
+offset_top = 100.0
+offset_right = 381.0
+offset_bottom = 308.0
+grow_horizontal = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="music" type="RichTextLabel" parent="Control/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "boomer type beat"
+focus_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "[center]
+Music by \"cookedByAI\"
+[url=https://www.youtube.com/watch?v=NlXrqO1fZ4o](boomer -- pop instrumental)[/url]
+[/center]"
+fit_content = true
+selection_enabled = true
+deselect_on_focus_loss_enabled = false
+
+[node name="code" type="RichTextLabel" parent="Control/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "boomer type beat"
+focus_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "[center]
+Art / Code by \"BaconEggsRL\"
+[url=https://github.com/BaconEggsRL/3_fruit_ninja](Project files available on GitHub)[/url]
+[/center]"
+fit_content = true
+selection_enabled = true
+deselect_on_focus_loss_enabled = false
+
+[connection signal="pressed" from="Control/BackButton" to="." method="_on_back_button_pressed"]

@@ -66,16 +66,16 @@ Goals:
 
 
 MENUS
-Create a main menu
-Start button (game)
-Settings menu
-About/Credits menu
+# Create a main menu
+# Start button (game)
+# Settings menu
+# About/Credits menu
 Tap or slice to activate buttons
 
 AUDIO
-Add background music
-Add button to mute SFX and button to mute Music
-Add slider for SFX volume and Music volume
+# Add background music
+# Add button to mute SFX and button to mute Music
+# Add slider for SFX volume and Music volume
 
 GAMEPLAY
 Score on top left (number of fruit sliced.) Show best under it

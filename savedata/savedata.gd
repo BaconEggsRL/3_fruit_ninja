@@ -2,6 +2,14 @@ class_name SaveData extends Resource
 
 @export var high_score:int = 0
 
+@export var bus_volume: Dictionary = {
+	"Master": 1,
+	"music": 1,
+	"sfx": 1,
+}
+
+
+
 const SAVE_PATH:String = "user://save_data.tres"
 
 
@@ -11,6 +19,12 @@ func save() -> void:
 	
 func clear() -> void:
 	self.high_score = 0
+	self.bus_volume = {
+		"Master": 1,
+		"music": 1,
+		"sfx": 1,
+	}
+
 	save()
 	
 	

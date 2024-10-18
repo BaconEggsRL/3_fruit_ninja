@@ -1,0 +1,257 @@
+[gd_scene load_steps=6 format=3 uid="uid://chu7kmi7rgdh0"]
+
+[ext_resource type="Script" path="res://scenes/settings.gd" id="1_gm07b"]
+[ext_resource type="PackedScene" uid="uid://btvqfosghkqr" path="res://volume_slider.tscn" id="2_tjo8t"]
+[ext_resource type="PackedScene" uid="uid://80tkh5vpey8y" path="res://trail.tscn" id="3_jh1gr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wph20"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lw05y"]
+
+[node name="settings" type="Node2D" node_paths=PackedStringArray("best_score", "music", "code")]
+script = ExtResource("1_gm07b")
+best_score = NodePath("Control/GridContainer2/BestScore")
+music = NodePath("Control/GridContainer2/GridContainer2/music2")
+code = NodePath("Control/GridContainer2/GridContainer2/code")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 1
+
+[node name="SettingsLabel2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.5
+offset_right = 185.5
+offset_bottom = 132.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 96
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer2" type="GridContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.5
+offset_top = -110.0
+offset_right = 251.5
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 100
+columns = 3
+
+[node name="AudioLabel" type="Label" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Audio"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Control/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Best Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="Label" parent="Control/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="HSeparator2" type="HSeparator" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="HSeparator5" type="HSeparator" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="GridContainer" type="GridContainer" parent="Control/GridContainer2"]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="Control/GridContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Master"
+vertical_alignment = 1
+
+[node name="master_slider" parent="Control/GridContainer2/GridContainer" instance=ExtResource("2_tjo8t")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="sep1" type="Label" parent="Control/GridContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="music" type="Label" parent="Control/GridContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "music"
+vertical_alignment = 1
+
+[node name="music_slider" parent="Control/GridContainer2/GridContainer" instance=ExtResource("2_tjo8t")]
+layout_mode = 2
+bus_name = "music"
+
+[node name="sep2" type="Label" parent="Control/GridContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="sfx" type="Label" parent="Control/GridContainer2/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "sfx"
+vertical_alignment = 1
+
+[node name="sfx_slider" parent="Control/GridContainer2/GridContainer" instance=ExtResource("2_tjo8t")]
+layout_mode = 2
+bus_name = "sfx"
+
+[node name="BestScore" type="Label" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer2" type="GridContainer" parent="Control/GridContainer2"]
+layout_mode = 2
+
+[node name="music2" type="RichTextLabel" parent="Control/GridContainer2/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Link to music video"
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wph20")
+bbcode_enabled = true
+text = "[center]
+Music by [url=https://www.youtube.com/watch?v=NlXrqO1fZ4o]cookedByAI[/url]
+[/center]"
+fit_content = true
+deselect_on_focus_loss_enabled = false
+
+[node name="code" type="RichTextLabel" parent="Control/GridContainer2/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Link to GitHub"
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lw05y")
+bbcode_enabled = true
+text = "[center]
+Game by [url=https://github.com/BaconEggsRL/3_fruit_ninja]BaconEggsRL[/url]
+[/center]"
+fit_content = true
+selection_enabled = true
+deselect_on_focus_loss_enabled = false
+
+[node name="sep3" type="Label" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="sep4" type="Label" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="sep5" type="Label" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="HSeparator4" type="HSeparator" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="HSeparator6" type="HSeparator" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="ResetAudio" type="Button" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "RESET AUDIO DATA"
+
+[node name="ResetScore" type="Button" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "RESET SCORE DATA"
+
+[node name="Donate" type="Button" parent="Control/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Donate"
+
+[node name="BackButton" type="Button" parent="Control"]
+layout_mode = 1
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 135.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 21
+text = "Back"
+
+[node name="AudioPopup" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+title = "Confirm Erase Data"
+initial_position = 1
+size = Vector2i(403, 100)
+ok_button_text = "YES"
+cancel_button_text = "NO"
+
+[node name="Label" type="Label" parent="AudioPopup"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 395.0
+offset_bottom = 51.0
+text = "ARE YOU SURE YOU WANT TO RESET AUDIO DATA?"
+
+[node name="ScorePopup" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+title = "Confirm Erase Data"
+initial_position = 1
+size = Vector2i(402, 100)
+ok_button_text = "YES"
+cancel_button_text = "NO"
+
+[node name="Label" type="Label" parent="ScorePopup"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 394.0
+offset_bottom = 51.0
+text = "ARE YOU SURE YOU WANT TO RESET SCORE DATA?"
+
+[node name="Trail" parent="." instance=ExtResource("3_jh1gr")]
+
+[connection signal="pressed" from="Control/GridContainer2/ResetAudio" to="." method="_on_reset_audio_pressed"]
+[connection signal="pressed" from="Control/GridContainer2/ResetScore" to="." method="_on_reset_score_pressed"]
+[connection signal="pressed" from="Control/GridContainer2/Donate" to="." method="_on_reset_score_pressed"]
+[connection signal="pressed" from="Control/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="confirmed" from="AudioPopup" to="." method="_on_audio_popup_confirmed"]
+[connection signal="confirmed" from="ScorePopup" to="." method="_on_score_popup_confirmed"]

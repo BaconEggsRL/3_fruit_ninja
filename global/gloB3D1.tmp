@@ -39,4 +39,3 @@ playback_type = 1
 
 [node name="button" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("8_k3w67")
-bus = &"sfx"
