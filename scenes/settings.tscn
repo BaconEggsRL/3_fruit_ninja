@@ -1,25 +1,111 @@
-[gd_scene load_steps=6 format=3 uid="uid://chu7kmi7rgdh0"]
+[gd_scene load_steps=9 format=3 uid="uid://chu7kmi7rgdh0"]
 
 [ext_resource type="Script" path="res://scenes/settings.gd" id="1_gm07b"]
 [ext_resource type="PackedScene" uid="uid://btvqfosghkqr" path="res://volume_slider.tscn" id="2_tjo8t"]
 [ext_resource type="PackedScene" uid="uid://80tkh5vpey8y" path="res://trail.tscn" id="3_jh1gr"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a237p"]
+size = Vector2(888, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wl8fv"]
+size = Vector2(5183.5, 595.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11d3y"]
+size = Vector2(5724.94, 661)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_celau"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lw05y"]
 
-[node name="settings" type="Node2D" node_paths=PackedStringArray("best_score", "music", "code")]
+[node name="settings" type="Node2D" node_paths=PackedStringArray("best_score", "music", "code", "mouse_trail")]
 script = ExtResource("1_gm07b")
 best_score = NodePath("Control/GridContainer2/BestScore")
 music = NodePath("Control/GridContainer2/GridContainer2/music2")
 code = NodePath("Control/GridContainer2/GridContainer2/code")
+mouse_trail = NodePath("mouse_trail")
+
+[node name="AudioPopup" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+title = "Confirm Erase Data"
+initial_position = 1
+size = Vector2i(403, 100)
+ok_button_text = "YES"
+cancel_button_text = "NO"
+
+[node name="Label" type="Label" parent="AudioPopup"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 395.0
+offset_bottom = 51.0
+text = "ARE YOU SURE YOU WANT TO RESET AUDIO DATA?"
+
+[node name="ScorePopup" type="ConfirmationDialog" parent="."]
+auto_translate_mode = 1
+title = "Confirm Erase Data"
+initial_position = 1
+size = Vector2i(402, 100)
+ok_button_text = "YES"
+cancel_button_text = "NO"
+
+[node name="Label" type="Label" parent="ScorePopup"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 394.0
+offset_bottom = 51.0
+text = "ARE YOU SURE YOU WANT TO RESET SCORE DATA?"
+
+[node name="mouse_trail" parent="." instance=ExtResource("3_jh1gr")]
+
+[node name="walls" type="Node2D" parent="."]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls"]
+
+[node name="ColorRect" type="ColorRect" parent="walls/StaticBody2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 139.0
+offset_top = 388.0
+offset_right = 1026.0
+offset_bottom = 452.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.12549)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D"]
+position = Vector2(584, 420)
+shape = SubResource("RectangleShape2D_a237p")
+disabled = true
+
+[node name="bounds" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bounds"]
+position = Vector2(552, 3380)
+shape = SubResource("RectangleShape2D_wl8fv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="bounds"]
+position = Vector2(-1674, 327.531)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_11d3y")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="bounds"]
+position = Vector2(2797, 353)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_11d3y")
+
+[node name="fruits" type="Node2D" parent="."]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="SettingsLabel2" type="Label" parent="Control"]
 layout_mode = 1
@@ -147,7 +233,7 @@ mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_celau")
 bbcode_enabled = true
 text = "[center]
-Music by [url=https://www.youtube.com/watch?v=NlXrqO1fZ4o]cookedByAI[/url]
+Music by [url=https://www.youtube.com/watch?v=srXXDT0CU_4]cookedByAI[/url]
 [/center]"
 fit_content = true
 deselect_on_focus_loss_enabled = false
@@ -156,6 +242,7 @@ deselect_on_focus_loss_enabled = false
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Link to GitHub"
+focus_mode = 2
 mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lw05y")
 bbcode_enabled = true
@@ -217,41 +304,10 @@ offset_bottom = 58.0
 theme_override_font_sizes/font_size = 21
 text = "Back"
 
-[node name="AudioPopup" type="ConfirmationDialog" parent="."]
-auto_translate_mode = 1
-title = "Confirm Erase Data"
-initial_position = 1
-size = Vector2i(403, 100)
-ok_button_text = "YES"
-cancel_button_text = "NO"
-
-[node name="Label" type="Label" parent="AudioPopup"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 395.0
-offset_bottom = 51.0
-text = "ARE YOU SURE YOU WANT TO RESET AUDIO DATA?"
-
-[node name="ScorePopup" type="ConfirmationDialog" parent="."]
-auto_translate_mode = 1
-title = "Confirm Erase Data"
-initial_position = 1
-size = Vector2i(402, 100)
-ok_button_text = "YES"
-cancel_button_text = "NO"
-
-[node name="Label" type="Label" parent="ScorePopup"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 394.0
-offset_bottom = 51.0
-text = "ARE YOU SURE YOU WANT TO RESET SCORE DATA?"
-
-[node name="Trail" parent="." instance=ExtResource("3_jh1gr")]
-
+[connection signal="confirmed" from="AudioPopup" to="." method="_on_audio_popup_confirmed"]
+[connection signal="confirmed" from="ScorePopup" to="." method="_on_score_popup_confirmed"]
+[connection signal="body_entered" from="bounds" to="." method="_on_bounds_body_entered"]
 [connection signal="pressed" from="Control/GridContainer2/ResetAudio" to="." method="_on_reset_audio_pressed"]
 [connection signal="pressed" from="Control/GridContainer2/ResetScore" to="." method="_on_reset_score_pressed"]
 [connection signal="pressed" from="Control/GridContainer2/MoreGames" to="." method="_on_more_games_pressed"]
 [connection signal="pressed" from="Control/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="confirmed" from="AudioPopup" to="." method="_on_audio_popup_confirmed"]
-[connection signal="confirmed" from="ScorePopup" to="." method="_on_score_popup_confirmed"]

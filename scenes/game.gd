@@ -10,13 +10,13 @@ extends Node2D
 const FRUIT = preload("res://fruit.tscn")
 
 var score : int = 0
-var num_bots : int = 0
+@export var num_bots : int = 2
 const MAX_BOTS = 10
 const MIN_BOTS = 0
 
 const x_center = 1152/2.0 - 64
 const y_center = -128
-const v0 = Vector2(0, 500)
+const MAX_SPEED = 500
 
 
 func player_scored() -> void:
@@ -33,25 +33,25 @@ func _ready() -> void:
 	Global.current_scene = self
 	new_best.hide()
 	
-	for f in fruits.get_children():
-		num_bots += 1
-		fruit_connect(f)
-	
+	# make bots
 	num_bots_label.text = str(num_bots)
+	for i in range(num_bots):
+		make_fruit()
+		
+	# mouse trail slice
 	mouse_trail.slice.connect(_on_slice)
-	
 	
 	# change background color
 	# RenderingServer.set_default_clear_color(Color(0,0,0,1))
 
 
 
-func make_fruit(pos := Vector2(x_center, y_center), vel := v0) -> void:
+func make_fruit(pos := Vector2(x_center, y_center), vel := Vector2(0, MAX_SPEED)) -> void:
 	# spawn a new fruit
 	var f = FRUIT.instantiate()
 	f.position = pos
 	f.apply_central_impulse(vel)
-	fruits.add_child(f)
+	fruits.call_deferred("add_child", f)
 	fruit_connect(f)
 	
 	
@@ -60,7 +60,8 @@ func _on_slice(fruit_path, in_glob, out_glob) -> void:
 	cut_fruit.cut(in_glob, out_glob)
 	# on completed cut: make a new fruit
 	var pos = Vector2(x_center + randf_range(-200, 200), y_center)
-	make_fruit(pos)
+	var vel = Vector2(0, clamp(randf_range(0, 700), 0, MAX_SPEED))
+	make_fruit(pos, vel)
 	
 	# increment score
 	player_scored()
@@ -73,7 +74,14 @@ func _on_slice(fruit_path, in_glob, out_glob) -> void:
 
 
 func _on_bounds_body_entered(body: Node2D) -> void:
-	print("body out of bounds, ", body)
+	
+	if body.is_in_group("fruit"):
+		# print("body out of bounds, ", body)
+		if body.sliced == false:
+			print("NOT SLICED")
+			var pos = Vector2(x_center + randf_range(-200, 200), y_center)
+			var vel = Vector2(0, clamp(randf_range(0, 700), 0, MAX_SPEED))
+			make_fruit(pos, vel)
 	body.call_deferred("queue_free")
 
 
@@ -93,7 +101,8 @@ func _on_inc_num_bots_pressed() -> void:
 		num_bots = temp
 		num_bots_label.text = str(num_bots)
 		var pos = Vector2(x_center + randf_range(-200, 200), y_center)
-		make_fruit(pos)
+		var vel = Vector2(0, clamp(randf_range(0, 700), 0, MAX_SPEED))
+		make_fruit(pos, vel)
 
 
 func _on_dec_num_bots_pressed() -> void:
@@ -101,8 +110,10 @@ func _on_dec_num_bots_pressed() -> void:
 	if temp < MIN_BOTS:
 		return
 	else:
-		num_bots = temp
-		num_bots_label.text = str(num_bots)
+		
 		for f in fruits.get_children():
-			f.call_deferred("queue_free")
-			return
+			if f.sliced == false:
+				f.call_deferred("queue_free")
+				num_bots = temp
+				num_bots_label.text = str(num_bots)
+				return

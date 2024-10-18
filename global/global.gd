@@ -95,11 +95,11 @@ func play_swipe() -> void:
 		var pitch = randf_range(1.5, 3)
 		
 		swipe.pitch_scale = pitch
-		print("before play pitch_scale = ", swipe.pitch_scale)
+		# print("before play pitch_scale = ", swipe.pitch_scale)
 		
 		swipe.play()
 		
-		print("after play pitch_scale = ", swipe.pitch_scale)
+		# print("after play pitch_scale = ", swipe.pitch_scale)
 		swipe.pitch_scale = pitch
 
 # Scene Manager

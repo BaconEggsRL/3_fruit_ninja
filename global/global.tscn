@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://52mefugqmusp"]
 
 [ext_resource type="Script" path="res://global/global.gd" id="1_gr3b3"]
-[ext_resource type="AudioStream" uid="uid://p867yl0mpahk" path="res://sounds/boomer.mp3" id="2_x82jk"]
+[ext_resource type="AudioStream" uid="uid://bd0iyq10ki5xw" path="res://sounds/popo.mp3" id="2_3h0rs"]
 [ext_resource type="AudioStream" uid="uid://bh165cdqk6x5r" path="res://sounds/slice_low.mp3" id="3_o3wy3"]
 [ext_resource type="AudioStream" uid="uid://m67438j4fbfi" path="res://sounds/slice_high.mp3" id="4_bf7o2"]
 [ext_resource type="AudioStream" uid="uid://c14pk4nrmy58y" path="res://sounds/slice_gory_minor.mp3" id="5_n8k1r"]
@@ -24,7 +24,7 @@ script = ExtResource("1_gr3b3")
 [node name="sounds" type="Node" parent="."]
 
 [node name="music" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource("2_x82jk")
+stream = ExtResource("2_3h0rs")
 autoplay = true
 bus = &"music"
 

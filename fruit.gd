@@ -20,6 +20,7 @@ var sliced : bool = false
 @onready var slice_container: Node2D = $slice_container
 
 # const FRUIT = preload("res://fruit.tscn")
+# @onready var fruit_timer: Timer = $FruitTimer
 
 
 

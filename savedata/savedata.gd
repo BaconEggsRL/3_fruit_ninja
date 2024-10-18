@@ -3,7 +3,7 @@ class_name SaveData extends Resource
 @export var high_score:int = 0
 
 @export var bus_volume: Dictionary = {
-	"Master": 1,
+	"Master": 0.5,
 	"music": 1,
 	"sfx": 1,
 }
@@ -20,7 +20,7 @@ func save() -> void:
 func clear() -> void:
 	self.high_score = 0
 	self.bus_volume = {
-		"Master": 1,
+		"Master": 0.5,
 		"music": 1,
 		"sfx": 1,
 	}

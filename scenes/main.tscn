@@ -1,10 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwr5ealtnmr27"]
+[gd_scene load_steps=6 format=3 uid="uid://dwr5ealtnmr27"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_pneyj"]
 [ext_resource type="PackedScene" uid="uid://80tkh5vpey8y" path="res://trail.tscn" id="2_oheeh"]
 
-[node name="main" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhbj6"]
+size = Vector2(888, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmy2l"]
+size = Vector2(5183.5, 595.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7r43"]
+size = Vector2(5724.94, 661)
+
+[node name="main" type="Node2D" node_paths=PackedStringArray("mouse_trail")]
 script = ExtResource("1_pneyj")
+mouse_trail = NodePath("mouse_trail")
+
+[node name="mouse_trail" parent="." instance=ExtResource("2_oheeh")]
+
+[node name="walls" type="Node2D" parent="."]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls"]
+
+[node name="ColorRect" type="ColorRect" parent="walls/StaticBody2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 139.0
+offset_top = 388.0
+offset_right = 1026.0
+offset_bottom = 452.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.12549)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D"]
+position = Vector2(584, 420)
+shape = SubResource("RectangleShape2D_fhbj6")
+disabled = true
+
+[node name="bounds" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bounds"]
+position = Vector2(552, 3380)
+shape = SubResource("RectangleShape2D_nmy2l")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="bounds"]
+position = Vector2(-1674, 327.531)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_i7r43")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="bounds"]
+position = Vector2(2797, 353)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_i7r43")
+
+[node name="fruits" type="Node2D" parent="."]
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(1152, 648)
@@ -12,6 +68,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 1
@@ -52,7 +109,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Settings"
 
-[node name="Trail" parent="." instance=ExtResource("2_oheeh")]
-
+[connection signal="body_entered" from="bounds" to="." method="_on_bounds_body_entered"]
 [connection signal="pressed" from="Control/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

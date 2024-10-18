@@ -81,6 +81,17 @@ Completed Goals:
 
 Goals:
 
+
+# num_bots doesn't work when slicing
+
+[url=https://www.youtube.com/watch?v=NlXrqO1fZ4o]cookedByAI[/url]
+
+
+[url=https://www.youtube.com/watch?v=srXXDT0CU_4]cookedByAI[/url]
+https://www.youtube.com/watch?v=srXXDT0CU_4
+
+
+
 MENUS
 Tap or slice to activate buttons
 

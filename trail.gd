@@ -113,7 +113,7 @@ func _on_fruit_entered(fruit_path) -> void:
 	var fruit = get_node(fruit_path)
 	
 	if not fruit.sliced:
-		# print("entered ", fruit_path)
+		print("entered ", fruit_path)
 		if dragging:
 			fruit.entered_point = _get_position()
 			# print("at ", fruit.entered_point)
@@ -123,7 +123,7 @@ func _on_fruit_exited(fruit_path) -> void:
 	var fruit = get_node(fruit_path)
 	
 	if not fruit.sliced:
-		# print("exited ", fruit_path)
+		print("exited ", fruit_path)
 		if dragging and fruit.entered_point:
 			fruit.exited_point = _get_position()
 			# print("slice")
