@@ -1,0 +1,260 @@
+[gd_scene load_steps=9 format=3 uid="uid://1q3x246xlogl"]
+
+[ext_resource type="Script" path="res://scenes/game_classic.gd" id="1_hswvl"]
+[ext_resource type="PackedScene" uid="uid://btvqfosghkqr" path="res://volume_slider.tscn" id="2_8d08h"]
+[ext_resource type="Texture2D" uid="uid://ce12gjhni88qi" path="res://assets/emote_heart.png" id="2_31iiw"]
+[ext_resource type="PackedScene" uid="uid://80tkh5vpey8y" path="res://trail.tscn" id="3_qu3yo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_868to"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mwi6w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1a1tv"]
+size = Vector2(5183.5, 1269.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8nb4"]
+size = Vector2(4985.75, 661)
+
+[node name="game_classic" type="Node2D" node_paths=PackedStringArray("score_label", "new_best", "num_bots_label", "mouse_trail", "bomb_slider", "hearts_container", "gameover_canvas")]
+script = ExtResource("1_hswvl")
+score_label = NodePath("Control/ScoreLabel")
+new_best = NodePath("Control/NewBest")
+num_bots_label = NodePath("Control/VBoxContainer2/NumBotsLabel")
+mouse_trail = NodePath("mouse_trail")
+bomb_slider = NodePath("Control/VBoxContainer/GridContainer2/bomb_slider")
+hearts_container = NodePath("Control/VBoxContainer3/HeartsContainer")
+gameover_canvas = NodePath("gameover")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="HeartsContainer" type="HBoxContainer" parent="Control/VBoxContainer3"]
+layout_mode = 2
+
+[node name="Heart1" type="TextureRect" parent="Control/VBoxContainer3/HeartsContainer"]
+layout_mode = 2
+texture = ExtResource("2_31iiw")
+
+[node name="Heart2" type="TextureRect" parent="Control/VBoxContainer3/HeartsContainer"]
+layout_mode = 2
+texture = ExtResource("2_31iiw")
+
+[node name="Heart3" type="TextureRect" parent="Control/VBoxContainer3/HeartsContainer"]
+layout_mode = 2
+texture = ExtResource("2_31iiw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="ResetButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Reset"
+
+[node name="GridContainer" type="GridContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="Control/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Master"
+
+[node name="master_slider" parent="Control/VBoxContainer/GridContainer" instance=ExtResource("2_8d08h")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="music" type="Label" parent="Control/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "music"
+
+[node name="music_slider" parent="Control/VBoxContainer/GridContainer" instance=ExtResource("2_8d08h")]
+layout_mode = 2
+bus_name = "music"
+
+[node name="sfx" type="Label" parent="Control/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "sfx"
+
+[node name="sfx_slider" parent="Control/VBoxContainer/GridContainer" instance=ExtResource("2_8d08h")]
+layout_mode = 2
+bus_name = "sfx"
+
+[node name="GridContainer2" type="GridContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "Bombs +++++"
+
+[node name="bomb_slider" type="HSlider" parent="Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="ControlsTip" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Left Click + Drag to slice through the Godot bots!"
+horizontal_alignment = 1
+
+[node name="NewBest" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -365.5
+offset_top = -45.0
+offset_right = 365.5
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.658824, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "NEW BEST!"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -365.5
+offset_top = -45.0
+offset_right = 365.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="GridContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = 141.0
+grow_vertical = 0
+columns = 2
+
+[node name="NumBotsTip" type="Label" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "num_bots"
+
+[node name="IncNumBots" type="Button" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_868to")
+text = "    "
+
+[node name="Polygon2D" type="Polygon2D" parent="Control/VBoxContainer2/IncNumBots"]
+position = Vector2(-231, 37)
+polygon = PackedVector2Array(244, -25, 238, -14, 250, -14)
+
+[node name="NumBotsLabel" type="Label" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "1"
+horizontal_alignment = 1
+
+[node name="DecNumBots" type="Button" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mwi6w")
+
+[node name="Polygon2D2" type="Polygon2D" parent="Control/VBoxContainer2/DecNumBots"]
+position = Vector2(-231, 26)
+polygon = PackedVector2Array(244, -3, 238, -14, 250, -14)
+
+[node name="mouse_trail" parent="." instance=ExtResource("3_qu3yo")]
+MAX_LENGTH = 30
+
+[node name="bounds" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bounds"]
+position = Vector2(599.25, 1877.88)
+shape = SubResource("RectangleShape2D_1a1tv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="bounds"]
+position = Vector2(-1640, 9)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_p8nb4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="bounds"]
+position = Vector2(2831, 13)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_p8nb4")
+
+[node name="fruits" type="Node2D" parent="."]
+
+[node name="bombs" type="Node2D" parent="."]
+
+[node name="gameover" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="GameOverLabel" type="Label" parent="gameover"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.5
+offset_top = -66.0
+offset_right = 275.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 96
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Control/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="value_changed" from="Control/VBoxContainer/GridContainer2/bomb_slider" to="." method="_on_bomb_slider_value_changed"]
+[connection signal="pressed" from="Control/VBoxContainer2/IncNumBots" to="." method="_on_inc_num_bots_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer2/DecNumBots" to="." method="_on_dec_num_bots_pressed"]
+[connection signal="body_entered" from="bounds" to="." method="_on_bounds_body_entered"]

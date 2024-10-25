@@ -31,6 +31,7 @@ window/stretch/mode="canvas_items"
 
 fruit=""
 volume_slider=""
+bomb=""
 
 [input_devices]
 

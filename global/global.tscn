@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://52mefugqmusp"]
+[gd_scene load_steps=12 format=3 uid="uid://52mefugqmusp"]
 
 [ext_resource type="Script" path="res://global/global.gd" id="1_gr3b3"]
 [ext_resource type="AudioStream" uid="uid://bd0iyq10ki5xw" path="res://sounds/popo.mp3" id="2_3h0rs"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://bdyu5q5goi3x2" path="res://sounds/slice_gory.mp3" id="6_7ucjw"]
 [ext_resource type="AudioStream" uid="uid://c6hyjub2x4ivk" path="res://sounds/sword_reg_swipe.wav" id="8_aaw3e"]
 [ext_resource type="AudioStream" uid="uid://y1nm0s4y6reh" path="res://sounds/button.wav" id="8_k3w67"]
+[ext_resource type="AudioStream" uid="uid://cj3cxouwyrcvk" path="res://sounds/hit_hurt.wav" id="9_hxgcd"]
+[ext_resource type="AudioStream" uid="uid://ctrue4m0nes0j" path="res://sounds/explosion.wav" id="10_1w4fm"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hw138"]
 streams_count = 4
@@ -39,4 +41,13 @@ playback_type = 1
 
 [node name="button" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("8_k3w67")
+bus = &"sfx"
+
+[node name="hit_hurt" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("9_hxgcd")
+volume_db = 9.0
+bus = &"sfx"
+
+[node name="explosion" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("10_1w4fm")
 bus = &"sfx"

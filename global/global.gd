@@ -3,13 +3,15 @@ extends Node
 # Loading scenes
 var current_scene = null
 
-const game_scene_path : String = "res://scenes/game.tscn"
+const arcade_scene_path : String = "res://scenes/game.tscn"
+const classic_scene_path : String = "res://scenes/game_classic.tscn"
 const main_scene_path : String = "res://scenes/main.tscn"
 const scores_scene_path : String = "res://scenes/scores.tscn"
 const credits_scene_path : String = "res://scenes/credits.tscn"
 const settings_scene_path : String = "res://scenes/settings.tscn"
 
-var game_scene : PackedScene = preload(game_scene_path)
+var arcade_scene : PackedScene = preload(arcade_scene_path)
+var classic_scene : PackedScene = preload(classic_scene_path)
 var main_scene : PackedScene = preload(main_scene_path)
 var scores_scene : PackedScene = preload(scores_scene_path)
 var credits_scene : PackedScene = preload(credits_scene_path)
@@ -104,8 +106,11 @@ func play_swipe() -> void:
 
 # Scene Manager
 ######################################################################
-func to_game() -> void:
-	goto_scene(game_scene)
+func to_arcade() -> void:
+	goto_scene(arcade_scene)
+
+func to_classic() -> void:
+	goto_scene(classic_scene)
 	
 func to_main() -> void:
 	goto_scene(main_scene)

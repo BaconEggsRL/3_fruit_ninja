@@ -65,9 +65,9 @@ func _on_slice(fruit_path, in_glob, out_glob) -> void:
 	
 	# increment score
 	player_scored()
-	if score > Global.save_data.high_score:
+	if score > Global.save_data.arcade_high_score:
 		self.new_best.show()
-		Global.save_data.high_score = score
+		Global.save_data.arcade_high_score = score
 		Global.save_data.save()
 	
 	
@@ -86,7 +86,7 @@ func _on_bounds_body_entered(body: Node2D) -> void:
 
 
 func _on_reset_button_pressed() -> void:
-	Global.to_game()
+	Global.to_arcade()
 
 
 func _on_back_button_pressed() -> void:

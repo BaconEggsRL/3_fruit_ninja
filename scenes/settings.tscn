@@ -17,9 +17,10 @@ size = Vector2(5724.94, 661)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lw05y"]
 
-[node name="settings" type="Node2D" node_paths=PackedStringArray("best_score", "music", "code", "mouse_trail")]
+[node name="settings" type="Node2D" node_paths=PackedStringArray("arcade_score", "classic_score", "music", "code", "mouse_trail")]
 script = ExtResource("1_gm07b")
-best_score = NodePath("Control/GridContainer2/BestScore")
+arcade_score = NodePath("Control/GridContainer2/VBoxContainer/ArcadeScore")
+classic_score = NodePath("Control/GridContainer2/VBoxContainer/ClassicScore")
 music = NodePath("Control/GridContainer2/GridContainer2/music2")
 code = NodePath("Control/GridContainer2/GridContainer2/code")
 mouse_trail = NodePath("mouse_trail")
@@ -176,6 +177,7 @@ theme_override_constants/separation = 32
 layout_mode = 2
 
 [node name="Master" type="Label" parent="Control/GridContainer2/GridContainer"]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Master"
@@ -215,9 +217,30 @@ vertical_alignment = 1
 layout_mode = 2
 bus_name = "sfx"
 
-[node name="BestScore" type="Label" parent="Control/GridContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/GridContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 96
+
+[node name="Label" type="Label" parent="Control/GridContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Arcade Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArcadeScore" type="Label" parent="Control/GridContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/GridContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Classic Mode"
+horizontal_alignment = 1
+
+[node name="ClassicScore" type="Label" parent="Control/GridContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1

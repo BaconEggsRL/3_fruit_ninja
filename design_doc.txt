@@ -73,7 +73,7 @@ Completed Goals:
 # Add slider for SFX volume and Music volume
 
 # Score on top left (number of fruit sliced.) Show best under it
-
+# num_bots doesn't work when slicing
 
 ==============================================
 
@@ -81,32 +81,24 @@ Completed Goals:
 
 Goals:
 
-
-# num_bots doesn't work when slicing
-
-[url=https://www.youtube.com/watch?v=NlXrqO1fZ4o]cookedByAI[/url]
-
-
-[url=https://www.youtube.com/watch?v=srXXDT0CU_4]cookedByAI[/url]
-https://www.youtube.com/watch?v=srXXDT0CU_4
-
-
-
-MENUS
-Tap or slice to activate buttons
-
-AUDIO
-# None
-
 GAMEPLAY
-Number of tries (3) on top right
-Fruit tossed from bottom of screen
-Fruit that is not sliced and touches killzone makes you lose a try
-3 tries triggers gameover
+# Create a new game mode where the godot bots are tossed up from the bottom of the screen
+# (Save the old game mode as Endless or Arcade mode so you can still play it.)
+# (Scores for endless and classic mode should be saved and displayed separately.)
+
+
+
+In Classic mode--
+# Number of tries (3) on top right
+# Fruit tossed from bottom of screen
+# Fruit that is not sliced and touches killzone makes you lose a try
+
+# losing a life triggers a sound fx and a popup or vfx of some kind
+# 3 tries triggers gameover
 
 GAMEOVER
-score/high score displayed at game over
-retry or quit buttons
+# score/high score displayed at game over
+# "try again?" or quit to main buttons
 
 
 
@@ -115,9 +107,13 @@ retry or quit buttons
 ==============================================
 
 Stretch goals:
-Bombs insta-kill
-Fruit splatter effect
-Track score (num fruits sliced, time, combos?) on top left
-Critical (random), multi-fruit combos (3+ within time? doesn't have to be single swing)
-The chances of performing a critical are random
-Multi-fruit -- at least 3 in a single swipe
+
+Add critical and multi-fruit combos (3+ within single swipe)
+The chances of performing a critical are random (or higher if mouse speed is high enough?)
+
+# Add a "bomb" sprite which makes you lose instantly if you slice it.
+
+Add a fruit splatter effect when slicing.
+Tap or slice to activate buttons
+
+
