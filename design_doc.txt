@@ -108,6 +108,10 @@ GAMEOVER
 
 Stretch goals:
 
+apple mango peach and lime
+pineapple and strawberries
+
+
 Add critical and multi-fruit combos (3+ within single swipe)
 The chances of performing a critical are random (or higher if mouse speed is high enough?)
 

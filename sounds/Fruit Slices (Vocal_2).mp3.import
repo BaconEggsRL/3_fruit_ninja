@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://crkdpsotdh5rl"
+path="res://.godot/imported/Fruit Slices (Vocal_2).mp3-01d644c47b12bed47a54c41a3c8ac433.mp3str"
+
+[deps]
+
+source_file="res://sounds/Fruit Slices (Vocal_2).mp3"
+dest_files=["res://.godot/imported/Fruit Slices (Vocal_2).mp3-01d644c47b12bed47a54c41a3c8ac433.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

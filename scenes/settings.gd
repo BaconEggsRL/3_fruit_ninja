@@ -8,6 +8,7 @@ extends Node2D
 
 @export var music : RichTextLabel
 @export var code : RichTextLabel
+@export var assets : RichTextLabel
 
 @export var mouse_trail : Trail
 @onready var fruits: Node2D = $fruits
@@ -15,6 +16,8 @@ const FRUIT = preload("res://fruit.tscn")
 const x_center = 1152/2.0 - 64
 const y_center = -128
 const MAX_SPEED = 0
+
+@export var music_option : OptionButton
 
 
 
@@ -82,14 +85,20 @@ func _ready() -> void:
 	Global.current_scene = self
 	audio_popup.hide()
 	score_popup.hide()
+	
 	# Load audio and high score data
 	arcade_score.text = "%s" % str(Global.save_data.arcade_high_score)
 	classic_score.text = "%s" % str(Global.save_data.classic_high_score)
 	# sliders call _set_slider_value_from_bus() in ready function
 	
+	# set default music option
+	music_option.select(Global.save_data.music_index)
+	
+	
 	# meta links
-	music.meta_clicked.connect(_on_music_meta_clicked)
-	code.meta_clicked.connect(_on_code_meta_clicked)
+	music.meta_clicked.connect(_on_meta_clicked)
+	code.meta_clicked.connect(_on_meta_clicked)
+	assets.meta_clicked.connect(_on_meta_clicked)
 	
 	
 	# make fruit
@@ -105,12 +114,9 @@ func _ready() -> void:
 	
 
 
-func _on_music_meta_clicked(meta: Variant) -> void:
+func _on_meta_clicked(meta: Variant) -> void:
 	open_meta_link(meta)
-
-
-func _on_code_meta_clicked(meta: Variant) -> void:
-	open_meta_link(meta)
+	
 	
 
 # Conert a meta link to string and open in new tab
@@ -168,3 +174,16 @@ func _on_score_popup_confirmed() -> void:
 func _on_more_games_pressed() -> void:
 	var link = "https://baconeggsrl.itch.io/"
 	open_meta_link(link)
+
+
+func _on_music_option_button_item_selected(index: int) -> void:
+	if index == 0:
+		print("popo")
+	elif index == 1:
+		print("fruit slices vocal_2")
+	elif index == 2:
+		print("fruit slices serenade (instrumental)")
+	Global.save_data.music_index = index
+	Global.save_data.save()
+	
+	Global.music_fade_to(index)

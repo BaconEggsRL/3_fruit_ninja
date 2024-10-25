@@ -13,32 +13,34 @@ size = Vector2(5183.5, 595.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11d3y"]
 size = Vector2(5724.94, 661)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_celau"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lw05y"]
 
-[node name="settings" type="Node2D" node_paths=PackedStringArray("arcade_score", "classic_score", "music", "code", "mouse_trail")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_celau"]
+
+[node name="settings" type="Node2D" node_paths=PackedStringArray("arcade_score", "classic_score", "music", "code", "assets", "mouse_trail", "music_option")]
 script = ExtResource("1_gm07b")
 arcade_score = NodePath("Control/GridContainer2/VBoxContainer/ArcadeScore")
 classic_score = NodePath("Control/GridContainer2/VBoxContainer/ClassicScore")
 music = NodePath("Control/GridContainer2/GridContainer2/music2")
 code = NodePath("Control/GridContainer2/GridContainer2/code")
+assets = NodePath("Control/GridContainer2/GridContainer2/assets")
 mouse_trail = NodePath("mouse_trail")
+music_option = NodePath("Control/GridContainer2/GridContainer/MusicOptionButton")
 
 [node name="AudioPopup" type="ConfirmationDialog" parent="."]
 auto_translate_mode = 1
 title = "Confirm Erase Data"
 initial_position = 1
-size = Vector2i(403, 100)
+size = Vector2i(418, 100)
 ok_button_text = "YES"
 cancel_button_text = "NO"
 
 [node name="Label" type="Label" parent="AudioPopup"]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 395.0
+offset_right = 410.0
 offset_bottom = 51.0
-text = "ARE YOU SURE YOU WANT TO RESET AUDIO DATA?"
+text = "ARE YOU SURE YOU WANT TO RESET VOLUME DATA?"
 
 [node name="ScorePopup" type="ConfirmationDialog" parent="."]
 auto_translate_mode = 1
@@ -124,17 +126,16 @@ vertical_alignment = 1
 
 [node name="GridContainer2" type="GridContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -349.0
-offset_top = -138.0
-offset_right = 349.0
-offset_bottom = 223.5
+anchor_bottom = 1.0
+offset_left = -383.0
+offset_top = -507.0
+offset_right = 383.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_constants/h_separation = 100
 columns = 3
 
@@ -198,6 +199,21 @@ theme_override_font_sizes/font_size = 32
 text = "music"
 vertical_alignment = 1
 
+[node name="MusicOptionButton" type="OptionButton" parent="Control/GridContainer2/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+action_mode = 1
+clip_text = true
+selected = 0
+fit_to_longest_item = false
+item_count = 3
+popup/item_0/text = "we got the po-po on us boss"
+popup/item_1/text = "Fruit Slices (Vocal_2)"
+popup/item_1/id = 1
+popup/item_2/text = "Fruit Slice Serenade (Instrumental)"
+popup/item_2/id = 2
+
 [node name="music_slider" parent="Control/GridContainer2/GridContainer" instance=ExtResource("2_tjo8t")]
 layout_mode = 2
 bus_name = "music"
@@ -222,6 +238,13 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Control/GridContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="Control/GridContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Arcade Mode"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -235,6 +258,12 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="Control/GridContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Control/GridContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Classic Mode"
 horizontal_alignment = 1
 
@@ -248,48 +277,55 @@ vertical_alignment = 1
 [node name="GridContainer2" type="GridContainer" parent="Control/GridContainer2"]
 layout_mode = 2
 
-[node name="music2" type="RichTextLabel" parent="Control/GridContainer2/GridContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "Link to music video"
-mouse_filter = 1
-theme_override_styles/focus = SubResource("StyleBoxEmpty_celau")
-bbcode_enabled = true
-text = "[center]
-Music by [url=https://www.youtube.com/watch?v=srXXDT0CU_4]cookedByAI[/url]
-[/center]"
-fit_content = true
-deselect_on_focus_loss_enabled = false
-
 [node name="code" type="RichTextLabel" parent="Control/GridContainer2/GridContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Link to GitHub"
+tooltip_text = "Link to project GitHub"
 focus_mode = 2
 mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lw05y")
 bbcode_enabled = true
 text = "[center]
-Game by [url=https://github.com/BaconEggsRL/3_fruit_ninja]BaconEggsRL[/url]
+Game by:
+[url=https://github.com/BaconEggsRL/3_fruit_ninja]BaconEggsRL[/url]
 [/center]"
 fit_content = true
 selection_enabled = true
 deselect_on_focus_loss_enabled = false
 
-[node name="sep3" type="Label" parent="Control/GridContainer2"]
+[node name="music2" type="RichTextLabel" parent="Control/GridContainer2/GridContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
-vertical_alignment = 1
+size_flags_horizontal = 3
+tooltip_text = "Link to music"
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_celau")
+bbcode_enabled = true
+text = "[center]
+Music by:
+[url=https://www.youtube.com/watch?v=srXXDT0CU_4]cookedByAI[/url] & [url=https://suno.com/@tantalizingindierock3595]suno AI[/url]
+[/center]"
+fit_content = true
+deselect_on_focus_loss_enabled = false
 
-[node name="sep4" type="Label" parent="Control/GridContainer2"]
+[node name="assets" type="RichTextLabel" parent="Control/GridContainer2/GridContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
-vertical_alignment = 1
+size_flags_horizontal = 3
+tooltip_text = "Link to project GitHub"
+focus_mode = 2
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lw05y")
+bbcode_enabled = true
+text = "[center]
+Additional Assets:
+[url=https://kenney.nl/assets]kenney.nl[/url] & [url=https://sfxr.me/]sfxr.me[/url]
 
-[node name="sep5" type="Label" parent="Control/GridContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-vertical_alignment = 1
+Inspired by:
+[url=https://poki.com/en/g/fruit-ninja]Fruit Ninja[/url]
+
+[/center]"
+fit_content = true
+selection_enabled = true
+deselect_on_focus_loss_enabled = false
 
 [node name="HSeparator3" type="HSeparator" parent="Control/GridContainer2"]
 layout_mode = 2
@@ -306,7 +342,7 @@ theme_override_constants/separation = 32
 [node name="ResetAudio" type="Button" parent="Control/GridContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 21
-text = "Reset Audio Data"
+text = "Reset Volume Data"
 
 [node name="ResetScore" type="Button" parent="Control/GridContainer2"]
 layout_mode = 2
@@ -330,6 +366,7 @@ text = "Back"
 [connection signal="confirmed" from="AudioPopup" to="." method="_on_audio_popup_confirmed"]
 [connection signal="confirmed" from="ScorePopup" to="." method="_on_score_popup_confirmed"]
 [connection signal="body_entered" from="bounds" to="." method="_on_bounds_body_entered"]
+[connection signal="item_selected" from="Control/GridContainer2/GridContainer/MusicOptionButton" to="." method="_on_music_option_button_item_selected"]
 [connection signal="pressed" from="Control/GridContainer2/ResetAudio" to="." method="_on_reset_audio_pressed"]
 [connection signal="pressed" from="Control/GridContainer2/ResetScore" to="." method="_on_reset_score_pressed"]
 [connection signal="pressed" from="Control/GridContainer2/MoreGames" to="." method="_on_more_games_pressed"]
