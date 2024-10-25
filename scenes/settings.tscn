@@ -310,7 +310,6 @@ deselect_on_focus_loss_enabled = false
 [node name="assets" type="RichTextLabel" parent="Control/GridContainer2/GridContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Link to project GitHub"
 focus_mode = 2
 mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lw05y")
