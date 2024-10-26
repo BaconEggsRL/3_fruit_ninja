@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var arcade_score : Label
+@export var sandbox_score : Label
 @export var classic_score : Label
 
 @onready var audio_popup: ConfirmationDialog = $AudioPopup
@@ -87,7 +87,7 @@ func _ready() -> void:
 	score_popup.hide()
 	
 	# Load audio and high score data
-	arcade_score.text = "%s" % str(Global.save_data.arcade_high_score)
+	sandbox_score.text = "%s" % str(Global.save_data.sandbox_high_score)
 	classic_score.text = "%s" % str(Global.save_data.classic_high_score)
 	# sliders call _set_slider_value_from_bus() in ready function
 	
@@ -164,10 +164,10 @@ func _on_audio_popup_confirmed() -> void:
 
 
 func _on_score_popup_confirmed() -> void:
-	Global.save_data.arcade_high_score = 0
+	Global.save_data.sandbox_high_score = 0
 	Global.save_data.classic_high_score = 0
 	Global.save_data.save()
-	arcade_score.text = "%s" % str(Global.save_data.arcade_high_score)
+	sandbox_score.text = "%s" % str(Global.save_data.sandbox_high_score)
 	classic_score.text = "%s" % str(Global.save_data.classic_high_score)
 
 

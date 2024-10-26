@@ -97,9 +97,9 @@ func _on_settings_button_pressed() -> void:
 	Global.to_settings()
 
 
-func _on_arcade_btn_pressed() -> void:
+func _on_sandbox_btn_pressed() -> void:
 	Global.play_sound("button")
-	Global.to_arcade()
+	Global.to_sandbox()
 
 
 func _on_classic_btn_pressed() -> void:

@@ -99,15 +99,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="ArcadeBtn" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Arcade Mode"
-
 [node name="ClassicBtn" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-text = "Classic Mode"
+text = "Classic"
+
+[node name="SandboxBtn" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Sandbox"
 
 [node name="SettingsButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
@@ -115,6 +115,6 @@ theme_override_font_sizes/font_size = 36
 text = "Settings"
 
 [connection signal="body_entered" from="bounds" to="." method="_on_bounds_body_entered"]
-[connection signal="pressed" from="Control/VBoxContainer/ArcadeBtn" to="." method="_on_arcade_btn_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/ClassicBtn" to="." method="_on_classic_btn_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/SandboxBtn" to="." method="_on_sandbox_btn_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

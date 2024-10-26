@@ -17,9 +17,9 @@ size = Vector2(5724.94, 661)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_celau"]
 
-[node name="settings" type="Node2D" node_paths=PackedStringArray("arcade_score", "classic_score", "music", "code", "assets", "mouse_trail", "music_option")]
+[node name="settings" type="Node2D" node_paths=PackedStringArray("sandbox_score", "classic_score", "music", "code", "assets", "mouse_trail", "music_option")]
 script = ExtResource("1_gm07b")
-arcade_score = NodePath("Control/GridContainer2/VBoxContainer/ArcadeScore")
+sandbox_score = NodePath("Control/GridContainer2/VBoxContainer/SandboxScore")
 classic_score = NodePath("Control/GridContainer2/VBoxContainer/ClassicScore")
 music = NodePath("Control/GridContainer2/GridContainer2/music2")
 code = NodePath("Control/GridContainer2/GridContainer2/code")
@@ -245,11 +245,11 @@ vertical_alignment = 1
 [node name="Label4" type="Label" parent="Control/GridContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Arcade Mode"
+text = "Classic"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ArcadeScore" type="Label" parent="Control/GridContainer2/VBoxContainer"]
+[node name="ClassicScore" type="Label" parent="Control/GridContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "0"
@@ -264,10 +264,10 @@ horizontal_alignment = 1
 [node name="Label3" type="Label" parent="Control/GridContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Classic Mode"
+text = "Sandbox"
 horizontal_alignment = 1
 
-[node name="ClassicScore" type="Label" parent="Control/GridContainer2/VBoxContainer"]
+[node name="SandboxScore" type="Label" parent="Control/GridContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "0"

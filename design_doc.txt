@@ -110,6 +110,9 @@ Completed Goals:
 Stretch goals:
 
 
+Resolution improvements:
+Quality of life for fullscreen... everything looks too big
+
 Effects, sounds and UI:
 Add a fruit splatter effect when slicing.
 Tap or slice to activate buttons

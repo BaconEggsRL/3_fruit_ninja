@@ -1,6 +1,6 @@
 class_name SaveData extends Resource
 
-@export var arcade_high_score:int = 0
+@export var sandbox_high_score:int = 0
 @export var classic_high_score:int = 0
 @export var bomb_slider_value:float = 0.0
 
@@ -25,7 +25,7 @@ func save() -> void:
 	
 	
 func clear() -> void:
-	self.arcade_high_score = 0
+	self.sandbox_high_score = 0
 	self.classic_high_score = 0
 	self.bomb_slider_value = 0.0
 	self.music_index = 0
