@@ -64,12 +64,12 @@ func _ready():
 	music.play()
 	
 	# get OS
-	print("OS name = ", OS.get_name())
+	# print("OS name = ", OS.get_name())
 	if OS.has_feature("mobile"):
 		mobile = true
 	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
 		mobile = true
-	print("mobile = ", mobile)
+	# print("mobile = ", mobile)
 
 
 # Functions

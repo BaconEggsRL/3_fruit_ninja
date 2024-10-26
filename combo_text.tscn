@@ -1,24 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bh42xb7vqyup2"]
+[gd_scene load_steps=3 format=3 uid="uid://bf6awubpxnsm1"]
 
-[ext_resource type="Script" path="res://life_test.gd" id="1_mt3uk"]
+[ext_resource type="Script" path="res://combo_text.gd" id="1_baw4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kjrb2"]
-size = Vector2(89, 32)
+size = Vector2(99, 32)
 
-[node name="life_test" type="RigidBody2D"]
+[node name="combo_text" type="RigidBody2D"]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_mt3uk")
+script = ExtResource("1_baw4b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(54.5, 60)
+position = Vector2(51.5, 60)
 shape = SubResource("RectangleShape2D_kjrb2")
 
 [node name="Label" type="Label" parent="."]
 offset_top = 42.0
 offset_right = 104.0
 offset_bottom = 76.0
-theme_override_colors/font_color = Color(1, 0.434811, 0.366139, 1)
+theme_override_colors/font_color = Color(0.243137, 0.882353, 1, 1)
 theme_override_font_sizes/font_size = 24
-text = "-1 LIFE"
+text = "COMBO!"
 horizontal_alignment = 1

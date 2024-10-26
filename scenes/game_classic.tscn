@@ -15,7 +15,7 @@ size = Vector2(5183.5, 1269.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8nb4"]
 size = Vector2(4985.75, 661)
 
-[node name="game_classic" type="Node2D" node_paths=PackedStringArray("score_label", "new_best", "num_bots_label", "mouse_trail", "bomb_slider", "hearts_container", "gameover_canvas")]
+[node name="game_classic" type="Node2D" node_paths=PackedStringArray("score_label", "new_best", "num_bots_label", "mouse_trail", "bomb_slider", "hearts_container", "gameover_canvas", "combo_timer")]
 script = ExtResource("1_hswvl")
 score_label = NodePath("Control/ScoreLabel")
 new_best = NodePath("Control/NewBest")
@@ -24,6 +24,7 @@ mouse_trail = NodePath("mouse_trail")
 bomb_slider = NodePath("Control/VBoxContainer/GridContainer2/bomb_slider")
 hearts_container = NodePath("Control/VBoxContainer3/HeartsContainer")
 gameover_canvas = NodePath("gameover")
+combo_timer = NodePath("ComboTimer")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -252,9 +253,14 @@ text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ComboTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="pressed" from="Control/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="value_changed" from="Control/VBoxContainer/GridContainer2/bomb_slider" to="." method="_on_bomb_slider_value_changed"]
 [connection signal="pressed" from="Control/VBoxContainer2/IncNumBots" to="." method="_on_inc_num_bots_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer2/DecNumBots" to="." method="_on_dec_num_bots_pressed"]
 [connection signal="body_entered" from="bounds" to="." method="_on_bounds_body_entered"]
+[connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]

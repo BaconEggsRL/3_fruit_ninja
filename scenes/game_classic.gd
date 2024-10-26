@@ -10,7 +10,9 @@ extends Node2D
 const FRUIT = preload("res://fruit.tscn")
 @onready var bombs: Node2D = $bombs
 const BOMB = preload("res://bomb.tscn")
+
 const LIFE_TEST = preload("res://life_test.tscn")
+const COMBO_TEXT = preload("res://combo_text.tscn")
 
 
 var score : int = 0
@@ -57,6 +59,14 @@ var hearts_array : Array[TextureRect]
 var is_game_over : bool = false
 @export var gameover_canvas : CanvasLayer
 
+var multi_slice_count:int = 0
+var slice_position:Vector2 = Vector2(0,0)
+@export var combo_timer:Timer
+
+var combo_color = Color(1, 1, 93.0/255.0, 1)
+var crit_color = Color(62.0/255.0, 1, 1, 1)
+
+
 
 
 func start_bomb_timer() -> void:
@@ -79,9 +89,13 @@ func _on_bomb_timer_timeout(bomb_timer:Timer) -> void:
 
 
 
-func player_scored() -> void:
-	score += 1
+func player_scored(score_amount:int = 1) -> void:
+	score += score_amount
 	score_label.text = str(score)
+	if score > Global.save_data.classic_high_score:
+		self.new_best.show()
+		Global.save_data.classic_high_score = score
+		Global.save_data.save()
 		
 		
 func fruit_connect(f: Fruit) -> void:
@@ -92,12 +106,18 @@ func bomb_connect(b: Bomb) -> void:
 	b.test_mouse_exited.connect(mouse_trail._on_fruit_exited)
 
 
+
+
+########################################################################
+
+
 func _ready() -> void:
 	Global.current_scene = self
 	new_best.hide()
 	gameover_canvas.hide()
 	
 	# make bots
+	self.num_bots = Global.save_data.num_bots
 	num_bots_label.text = str(num_bots)
 	for i in range(num_bots):
 		make_fruit()
@@ -115,6 +135,8 @@ func _ready() -> void:
 	
 	# start making bombs
 	start_bomb_timer()
+	
+	
 	
 	# change background color
 	# RenderingServer.set_default_clear_color(Color(0,0,0,1))
@@ -143,6 +165,8 @@ func make_bomb(pos := Vector2(x_center, y_center),
 
 	
 func _on_slice(fruit_path, in_glob, out_glob) -> void:
+	
+	# cut the fruit (or bomb)
 	var cut_fruit = get_node(fruit_path)
 	cut_fruit.cut(in_glob, out_glob)
 
@@ -153,6 +177,9 @@ func _on_slice(fruit_path, in_glob, out_glob) -> void:
 	
 		if fruit_or_bomb.is_in_group("fruit"):
 			
+			var fruit : Fruit = fruit_or_bomb
+			
+			# start the respawn fruit timer
 			var fruit_timer = Timer.new()
 			fruit_timer.one_shot = true
 			fruit_timer.wait_time = randf_range(min_wait_time, max_wait_time+num_bots/2.0)
@@ -160,11 +187,36 @@ func _on_slice(fruit_path, in_glob, out_glob) -> void:
 			self.add_child(fruit_timer)
 			fruit_timer.start()
 			
-			player_scored()
-			if score > Global.save_data.classic_high_score:
-				self.new_best.show()
-				Global.save_data.classic_high_score = score
-				Global.save_data.save()
+			# increment score
+			player_scored(1)
+				
+			# start the multi-slice combo timer
+			if multi_slice_count == 0:
+				combo_timer.start()
+			# inc slice count
+			multi_slice_count += 1
+			slice_position = fruit.position
+			
+			# check if critical hit (sliced fruit overlapping with bomb)
+			var areas = fruit.area_2d.get_overlapping_areas()
+			# print("areas = ", areas)
+			for a in areas:
+				print(a.name)
+				if a.name == "CritArea":
+					var combo_text = COMBO_TEXT.instantiate()
+					var combo_score = 10
+					var label = combo_text.get_node("Label")
+					label.set("theme_override_colors/font_color", crit_color)
+					label.text = "CRIT! +%s" % str(combo_score)
+					combo_text.position = slice_position
+					call_deferred("add_child", combo_text)
+					# increment score
+					player_scored(combo_score)
+					# Global.play_sound("crit", false)
+				
+			
+	
+	
 				
 		elif fruit_or_bomb.is_in_group("bomb"):
 			# trigger explosion / lose a life
@@ -216,7 +268,7 @@ func _on_bounds_body_entered(body: Node2D) -> void:
 					_on_game_over()
 			
 			if not is_game_over:
-				print("NOT SLICED")
+				# print("NOT SLICED")
 				var pos = Vector2(x_center + randf_range(-FRUIT_SPREAD, FRUIT_SPREAD), y_center)
 				# var vel = Vector2(0, clamp(randf_range(0, 700), 0, MAX_SPEED))
 				make_fruit(pos)
@@ -247,6 +299,8 @@ func _on_inc_num_bots_pressed() -> void:
 		else:
 			num_bots = temp
 			num_bots_label.text = str(num_bots)
+			Global.save_data.num_bots = num_bots
+			Global.save_data.save()
 			var pos = Vector2(x_center + randf_range(-FRUIT_SPREAD, FRUIT_SPREAD), y_center)
 			# var vel = Vector2(0, clamp(randf_range(0, 700), 0, MAX_SPEED))
 			make_fruit(pos)
@@ -264,6 +318,8 @@ func _on_dec_num_bots_pressed() -> void:
 					f.call_deferred("queue_free")
 					num_bots = temp
 					num_bots_label.text = str(num_bots)
+					Global.save_data.num_bots = num_bots
+					Global.save_data.save()
 					return
 
 
@@ -281,3 +337,21 @@ func _on_bomb_slider_value_changed(value: float) -> void:
 	
 	Global.save_data.bomb_slider_value = value
 	Global.save_data.save()
+
+
+func _on_combo_timer_timeout() -> void:
+	# print("slice count = ", multi_slice_count)
+	if multi_slice_count > 1:
+		var combo_text = COMBO_TEXT.instantiate()
+		var combo_score = pow(multi_slice_count, 2)
+		var label = combo_text.get_node("Label")
+		label.set("theme_override_colors/font_color", combo_color)
+		label.text = "COMBO! +%s" % str(combo_score)
+		combo_text.position = slice_position
+		call_deferred("add_child", combo_text)
+		# increment score
+		player_scored(combo_score)
+		# Global.play_sound("combo", false)
+			
+				
+	multi_slice_count = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://52mefugqmusp"]
+[gd_scene load_steps=13 format=3 uid="uid://52mefugqmusp"]
 
 [ext_resource type="Script" path="res://global/global.gd" id="1_gr3b3"]
 [ext_resource type="AudioStream" uid="uid://bh165cdqk6x5r" path="res://sounds/slice_low.mp3" id="3_o3wy3"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://y1nm0s4y6reh" path="res://sounds/button.wav" id="8_k3w67"]
 [ext_resource type="AudioStream" uid="uid://cj3cxouwyrcvk" path="res://sounds/hit_hurt.wav" id="9_hxgcd"]
 [ext_resource type="AudioStream" uid="uid://ctrue4m0nes0j" path="res://sounds/explosion.wav" id="10_1w4fm"]
+[ext_resource type="AudioStream" uid="uid://da25i5m1wyce1" path="res://sounds/combo.wav" id="10_wjcbe"]
+[ext_resource type="AudioStream" uid="uid://bl12nfnryoyq7" path="res://sounds/crit.wav" id="11_xjm0o"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hw138"]
 streams_count = 4
@@ -47,5 +49,15 @@ bus = &"sfx"
 
 [node name="explosion" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("10_1w4fm")
+volume_db = -6.0
+bus = &"sfx"
+
+[node name="combo" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("10_wjcbe")
+volume_db = -6.0
+bus = &"sfx"
+
+[node name="crit" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("11_xjm0o")
 volume_db = -6.0
 bus = &"sfx"

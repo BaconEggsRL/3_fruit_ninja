@@ -6,6 +6,8 @@ class_name SaveData extends Resource
 
 @export var music_index:int = 0
 
+@export var num_bots:int = 2
+
 
 @export var bus_volume: Dictionary = {
 	"Master": 0.5,
@@ -27,6 +29,7 @@ func clear() -> void:
 	self.classic_high_score = 0
 	self.bomb_slider_value = 0.0
 	self.music_index = 0
+	self.num_bots = 2
 	
 	self.bus_volume = {
 		"Master": 0.5,

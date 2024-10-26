@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8o68uidv0kal"]
+[gd_scene load_steps=8 format=3 uid="uid://b8o68uidv0kal"]
 
 [ext_resource type="Script" path="res://bomb.gd" id="1_aibe0"]
 [ext_resource type="Texture2D" uid="uid://bs030nbf6ontv" path="res://icon_bad.svg" id="2_4agur"]
@@ -15,6 +15,9 @@ light_mode = 1
 [sub_resource type="SphereMesh" id="SphereMesh_ivvei"]
 radius = 20.302
 height = 36.643
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pd42x"]
+size = Vector2(128, 128)
 
 [node name="bomb" type="RigidBody2D" groups=["bomb"]]
 collision_layer = 2
@@ -48,6 +51,14 @@ texture_mode = 1
 material = SubResource("CanvasItemMaterial_k2rm7")
 position = Vector2(131, -34)
 mesh = SubResource("SphereMesh_ivvei")
+
+[node name="CritArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CritArea"]
+position = Vector2(64, 64)
+shape = SubResource("RectangleShape2D_pd42x")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

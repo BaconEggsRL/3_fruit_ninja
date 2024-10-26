@@ -75,20 +75,13 @@ Completed Goals:
 # Score on top left (number of fruit sliced.) Show best under it
 # num_bots doesn't work when slicing
 
-==============================================
 
-
-
-Goals:
-
-GAMEPLAY
+# GAMEPLAY
 # Create a new game mode where the godot bots are tossed up from the bottom of the screen
 # (Save the old game mode as Endless or Arcade mode so you can still play it.)
 # (Scores for endless and classic mode should be saved and displayed separately.)
 
-
-
-In Classic mode--
+# In Classic mode--
 # Number of tries (3) on top right
 # Fruit tossed from bottom of screen
 # Fruit that is not sliced and touches killzone makes you lose a try
@@ -96,28 +89,32 @@ In Classic mode--
 # losing a life triggers a sound fx and a popup or vfx of some kind
 # 3 tries triggers gameover
 
-GAMEOVER
+# GAMEOVER
 # score/high score displayed at game over
 # "try again?" or quit to main buttons
 
 
-
-
+# Add critical and multi-fruit combos (3+ within single swipe)
+# The chances of performing a critical are random (or higher if mouse speed is high enough?)
+# Add a "bomb" sprite which makes you lose instantly if you slice it.
+# number squared
+# 1 - 1
+# 2 - 2^2 = 4
+# 3 - 3^2 = 9
+# 4 - 4^2 = 16
+# 5^2 = 25
+# 6^2 = 36
 
 ==============================================
 
 Stretch goals:
 
-apple mango peach and lime
-pineapple and strawberries
 
-
-Add critical and multi-fruit combos (3+ within single swipe)
-The chances of performing a critical are random (or higher if mouse speed is high enough?)
-
-# Add a "bomb" sprite which makes you lose instantly if you slice it.
-
+Effects, sounds and UI:
 Add a fruit splatter effect when slicing.
 Tap or slice to activate buttons
+Update arcade mode with new features
 
-
+Add new art / sprites for fruit:
+apple mango peach and lime
+pineapple and strawberries

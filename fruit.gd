@@ -129,7 +129,7 @@ func cut(glob_in: Vector2, glob_out: Vector2) -> void:
 	# self.sprite_2d.hide()
 	
 	var polyline : Array[PackedVector2Array] = get_offset_polyline(loc_in, loc_out)
-	print("polyline[0] = ", polyline[0])
+	# print("polyline[0] = ", polyline[0])
 	
 	var slice = get_slice([loc_in, loc_out])
 	
@@ -149,16 +149,16 @@ func cut(glob_in: Vector2, glob_out: Vector2) -> void:
 	slice_container.add_child(mesh_instance2)
 	slice.add_point(point2)
 	
-	print("points = ", slice.points)
+	# print("points = ", slice.points)
 	
 	# sort points from min x to max x
 	var sorted = slice.points
 	sorted.sort()
-	print("sorted = ", sorted)
+	# print("sorted = ", sorted)
 	
 	# get new polyline based on test
 	polyline = get_offset_polyline(sorted[0], sorted[-1])
-	print("new polyline[0] = ", polyline[0])
+	# print("new polyline[0] = ", polyline[0])
 	
 	
 
