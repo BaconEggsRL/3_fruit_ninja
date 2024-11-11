@@ -121,3 +121,25 @@ Update arcade mode with new features
 Add new art / sprites for fruit:
 apple mango peach and lime
 pineapple and strawberries
+
+
+
+===============================
+
+
+Common themes among top games:
+
+Short
+<10-15 minutes to complete
+
+Atmosphere / Art/Animations / Music (funny/interesting splash/loading screen, itch.io page, intro art/music/cutscene)
+--eases you into the game slowly, easy to pick up and understand
+
+Difficulty
+--right match between easy to play and challenging
+
+Iterative
+--builds on a simple concept, levels are easy to make since concept repeats (puzzle)
+
+-Homepage
+--gifs showing short game play loop (3-5 seconds)

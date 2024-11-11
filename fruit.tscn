@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://crq7bhcxp75lf"]
 
 [ext_resource type="Script" path="res://fruit.gd" id="1_7c1c3"]
-[ext_resource type="Texture2D" uid="uid://cew0hj33apkj7" path="res://icon.svg" id="1_17ply"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8csd"]
-size = Vector2(128, 128)
+[ext_resource type="Texture2D" uid="uid://b33l3ct6xmu4b" path="res://assets/ai_test/apple_12.png" id="2_18tlg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo4c0"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8csd"]
 size = Vector2(128, 128)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k2rm7"]
@@ -19,15 +19,6 @@ height = 36.643
 [node name="fruit" type="RigidBody2D" groups=["fruit"]]
 script = ExtResource("1_7c1c3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(64, 64)
-shape = SubResource("RectangleShape2D_e8csd")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.352941)
-texture = ExtResource("1_17ply")
-centered = false
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 5
 collision_mask = 5
@@ -35,6 +26,15 @@ collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(64, 64)
 shape = SubResource("RectangleShape2D_jo4c0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(64, 64)
+shape = SubResource("RectangleShape2D_e8csd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.352941)
+texture = ExtResource("2_18tlg")
+centered = false
 
 [node name="poly_container" type="Node2D" parent="."]
 
